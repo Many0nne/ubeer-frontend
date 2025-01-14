@@ -1,0 +1,40 @@
+.container {
+    padding: 20px;
+    margin: auto;
+  }
+  
+  .search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .beer-grid {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .beer-card {
+    display: flex;
+    justify-content: center;
+  }
+  
+  mat-card {
+    width: 100%;
+  }
+  
+  mat-card-header {
+    background-color: #f5f5f5;
+  }
+  
+  mat-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  mat-card-content {
+    padding: 1em;
+    font-size: 1em;
+    color: #666;
+  }

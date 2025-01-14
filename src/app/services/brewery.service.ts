@@ -32,4 +32,18 @@ export class BreweryService {
   fetchBreweries(): void {
     this.socket.emit('getBreweries'); // Émission d'une requête au serveur
   }
+
+  // Méthode pour obtenir les détails d'une brasserie par son ID
+  getBreweryById(id: string): Observable<any> {
+    return new Observable((subscriber) => {
+      this.socket.emit('getBreweryById', id); // Emission d'un événement au serveur pour récupérer les détails
+      this.socket.on('breweryDetails', (data) => {
+        subscriber.next(data); // Retourne les détails reçus
+      });
+
+      return () => {
+        this.socket.off('breweryDetails');
+      };
+    });
+  }
 }
