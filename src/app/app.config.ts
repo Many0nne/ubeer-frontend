@@ -1,8 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import {provideAuth0} from '@auth0/auth0-angular';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,5 +17,6 @@ export const appConfig: ApplicationConfig = {
         redirect_uri: window.location.origin
       }
     }),
+    provideHttpClient(), provideAnimationsAsync(), provideAnimationsAsync()
   ]
 };
