@@ -3,6 +3,7 @@ import { BreweryService } from '../services/brewery.service';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-brewery',
@@ -14,16 +15,18 @@ import { RouterLink } from '@angular/router';
 export class BreweryComponent implements OnInit {
   breweries: any[] = []; // Stocke les brasseries reçues
 
-  constructor(private breweryService: BreweryService) {}
+  constructor(private breweryService: BreweryService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    // Écoute des données via le WebSocket
     this.breweryService.getBreweries().subscribe((data) => {
-      this.breweries = data;
-      console.log(this.breweries)
+      this.breweries = data.map((brewery) => ({
+        ...brewery,
+        banner_picture_url: this.sanitizer.bypassSecurityTrustUrl(brewery.banner_picture_url),
+        profile_picture_url: this.sanitizer.bypassSecurityTrustUrl(brewery.profile_picture_url),
+      }));
+      console.log(this.breweries);
     });
-
-    // Demande explicite des brasseries
+  
     this.breweryService.fetchBreweries();
   }
 }
