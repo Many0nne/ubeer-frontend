@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BreweryService } from '../services/brewery.service';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-brewery',
   standalone: true,
-  imports: [NavbarComponent, CommonModule],
+  imports: [NavbarComponent, CommonModule, RouterLink],
   templateUrl: './brewery.component.html',
   styleUrls: ['./brewery.component.scss']
 })
@@ -18,8 +19,8 @@ export class BreweryComponent implements OnInit {
   ngOnInit(): void {
     // Écoute des données via le WebSocket
     this.breweryService.getBreweries().subscribe((data) => {
-      console.log('Get breweries')
       this.breweries = data;
+      console.log(this.breweries)
     });
 
     // Demande explicite des brasseries

@@ -4,5 +4,6 @@ import { BreweryComponent } from './brewery/brewery.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'breweries', component: BreweryComponent }
+    { path: 'breweries', component: BreweryComponent },
+    // { path: 'brewery/:id', component: BreweryDetailComponent }
 ];
