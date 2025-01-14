@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <mat-form-field class="search-bar">
+    <mat-label>Rechercher une bière</mat-label>
+    <input matInput (input)="onSearch($event)" placeholder="Tapez pour rechercher">
+  </mat-form-field>
+
+  <div class="beer-grid">
+    <div *ngFor="let beer of filteredBeers" class="beer-card">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ beer.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ beer.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template #noBeers>
+    <p>Aucune bière trouvée.</p>
+  </ng-template>
+</div>
