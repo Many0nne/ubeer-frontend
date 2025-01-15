@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="bg-[url('https://fr.86beer.com/fr/fr/_jcr_content/root/content/container/container_649190826_.aimg.1024.82.jpeg/1696239299274.jpeg')] bg-cover bg-center h-screen w-screen flex flex-col items-center justify-center">
+  <h1 class="text-red-800 text-5xl font-semibold mb-4">Ajouter une brasserie</h1>
+  <form [formGroup]="breweryForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 container mx-auto">
+    <div class="mb-4">
+      <label class="block text-black text-lg font-bold mb-2" for="name">Nom de la brasserie:</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+             formControlName="name" type="text" id="name" required />
+    </div>
+    <div class="mb-4">
+      <label class="block text-black text-lg font-bold mb-2" for="address">Adresse:</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+             formControlName="address" type="text" id="address" required />
+    </div>
+    <div class="mb-4 flex space-x-4">
+      <div class="w-1/2">
+        <label class="block text-black text-lg font-bold mb-2" for="profileImage">Image de profil:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-800 file:text-white hover:file:bg-red-700 cursor-pointer"
+               type="file" id="profileImage" (change)="onFileChange($event, 'profileImage')" accept="image/*" required />
+      </div>
+      <div class="w-1/2">
+        <label class="block text-black text-lg font-bold mb-2" for="bannerImage">Image de bannière:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-800 file:text-white hover:file:bg-red-700 cursor-pointer"
+               type="file" id="bannerImage" (change)="onFileChange($event, 'bannerImage')" accept="image/*" required />
+      </div>
+    </div>
+    <button class="px-3 py-2 bg-red-800 hover:bg-red-700 text-slate-200 rounded-lg hover:text-white transition duration-200" type="submit">Ajouter la brasserie</button>
+    <button class="px-3 py-2 bg-gray-500 hover:bg-gray-400 text-slate-200 rounded-lg hover:text-white transition duration-200 ml-4" type="button" (click)="goBack()">Retour</button>
+  </form>
+</div>

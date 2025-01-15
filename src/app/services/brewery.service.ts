@@ -46,4 +46,17 @@ export class BreweryService {
       };
     });
   }
+
+  deleteBrewery(id: string): Observable<any> {
+    return new Observable((subscriber) => {
+      this.socket.emit('deleteBrewery', id); // Emission d'un événement pour supprimer la brasserie
+      this.socket.on('breweryDeleted', (data) => {
+        subscriber.next(data); // Retourne la réponse du serveur
+      });
+
+      return () => {
+        this.socket.off('breweryDeleted');
+      };
+    });
+  }
 }
