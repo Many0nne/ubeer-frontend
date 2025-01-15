@@ -4,11 +4,13 @@ import { BreweryService } from '../services/brewery.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-brewery-details',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, MatIconModule],
   templateUrl: './brewery-details.component.html',
   styleUrl: './brewery-details.component.scss'
 })
@@ -18,7 +20,8 @@ export class BreweryDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private breweryService: BreweryService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +35,20 @@ export class BreweryDetailsComponent implements OnInit {
         };
       });
     }
-    console.log(this.brewery)
+  }
+
+  deleteBrewery(): void {
+    if (this.brewery) {
+      this.breweryService.deleteBrewery(this.brewery.id).subscribe({
+        next: (response) => {
+          console.log('Brewery deleted successfully', response);
+          // Rediriger l'utilisateur vers la liste des brasseries
+          this.router.navigate(['/breweries']);
+        },
+        error: (error) => {
+          console.error('Error deleting brewery', error);
+        },
+      });
+    }
   }
 }
