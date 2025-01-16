@@ -1,11 +1,14 @@
 <app-navbar></app-navbar>
 <section class="w-full h-full m-0">
     <!-- Section de bannière -->
-    <div 
-        class="bg-[url('https://fr.86beer.com/fr/fr/_jcr_content/root/content/container/container_649190826_.aimg.1024.82.jpeg/1696239299274.jpeg')] 
-        bg-cover bg-center h-screen flex flex-col items-center justify-center"
-    >
-        <h1 class="text-6xl my-4 text-black">Breweries</h1>
+    <div class="relative h-screen flex flex-col items-center justify-center">
+        <img 
+            src="https://aerofab.fr/thumbnail/page/5cc6446b-8945-47fd-9101-4fdd2410628c/image/original/resize-ratio/x/aerofab-c-david-gallard-25-3000px.webp" 
+            alt="Brewery Banner" 
+            class="absolute inset-0 w-full h-full object-cover sepia overflow-hidden"
+        />
+        <h1 class="relative text-8xl my-4 text-white font-semibold">Breweries</h1>
+        <h4 class="relative text-3xl my-4 text-white font-medium">Découvrez les meilleures brasseries artisanales</h4>
     </div>
 
     <!-- Liste des brasseries -->
@@ -15,7 +18,7 @@
             class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
         >
             <!-- Image de bannière -->
-            <div class="h-40 bg-cover bg-center">
+            <div class="h-40 bg-cover bg-center transition-transform duration-300 hover:scale-105">
                 <img [src]="brewery.banner_picture_url" alt="{{ brewery.name }}" class="w-full h-full object-cover"/>
             </div>
 
@@ -39,3 +42,4 @@
         </div>
     </div>
 </section>
+<a [routerLink]="['/breweries/new']" class="fixed bottom-4 right-4 bg-red-800 hover:bg-red-700 transition-transform duration-300 hover:scale-105  text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl">+</a>
