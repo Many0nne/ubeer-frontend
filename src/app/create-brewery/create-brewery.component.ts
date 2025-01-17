@@ -46,7 +46,7 @@ export class CreateBreweryComponent {
       formData.append('profile_picture_id', this.breweryForm.get('profileImage')?.value);
       formData.append('banner_picture_id', this.breweryForm.get('bannerImage')?.value);
 
-      this.http.post('http://localhost:3100/breweries', formData).subscribe({
+      this.http.post('https://https://ubeer-backend.onrender.com/breweries', formData).subscribe({
         next: (response) => {
           console.log('Brewery created successfully', response);
           // Rediriger l'utilisateur vers la liste des brasseries
