@@ -52,3 +52,20 @@ mat-form-field {
 button {
   align-self: flex-end; /* Alignez le bouton à droite */
 }
+
+/* Style pour les contrôles de pagination */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Style pour les contrôles de limite */
+.limit-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}

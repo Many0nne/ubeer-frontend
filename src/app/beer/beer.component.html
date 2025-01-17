@@ -1,13 +1,11 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <!-- Barre de recherche -->
   <mat-form-field class="search-bar" appearance="outline">
     <mat-label>Rechercher une bière</mat-label>
     <input matInput (input)="onSearch($event)" placeholder="Tapez pour rechercher">
   </mat-form-field>
 
-  <!-- Grille des bières -->
   <div class="beer-grid">
     <div *ngFor="let beer of filteredBeers" class="beer-card">
       <mat-card>
@@ -23,30 +21,42 @@
     </div>
   </div>
 
-  <!-- Conteneur pour le formulaire -->
-  <div class="form-container">
-    <form [formGroup]="beerForm" (ngSubmit)="onSubmit()" class="beer-form">
-      <mat-form-field>
-        <mat-label>Nom de la bière</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description"></textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Prix</mat-label>
-        <input matInput formControlName="price" type="number">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Brasserie</mat-label>
-        <mat-select formControlName="brewery_id">
-          <mat-option *ngFor="let brewery of breweries" [value]="brewery.id">
-            {{ brewery.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Ajouter</button>
-    </form>
+  <div class="pagination-controls">
+    <button mat-button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+    <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+    <button mat-button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
   </div>
+
+  <div class="limit-controls">
+    <mat-form-field>
+      <mat-label>Limite</mat-label>
+      <mat-select (selectionChange)="changeLimit($event.value)" [value]="limit">
+        <mat-option *ngFor="let option of [5, 10, 20, 50]" [value]="option">{{ option }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <form [formGroup]="beerForm" (ngSubmit)="onSubmit()" class="beer-form">
+    <mat-form-field>
+      <mat-label>Nom de la bière</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Prix</mat-label>
+      <input matInput formControlName="price" type="number">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Brasserie</mat-label>
+      <mat-select formControlName="brewery_id">
+        <mat-option *ngFor="let brewery of breweries" [value]="brewery.id">
+          {{ brewery.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Ajouter</button>
+  </form>
 </div>

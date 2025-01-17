@@ -21,6 +21,9 @@ export class BeerComponent implements OnInit {
   filteredBeers: any[] = [];
   breweries: any[] = [];
   beerForm: FormGroup;
+  currentPage: number = 1;
+  totalPages: number = 1;
+  limit: number = 10;
 
   constructor(private beerService: BeerService, private fb: FormBuilder, private breweryService: BreweryService) {
     this.beerForm = this.fb.group({
@@ -32,14 +35,6 @@ export class BeerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.beerService.getBeers().subscribe(response => {
-      this.beers = response.data; // Accédez à la propriété 'data' de la réponse
-      this.filteredBeers = this.beers;
-      console.log('Beers:', this.beers); // Vérifiez les données dans la console
-    }, error => {
-      console.error('Error fetching beers:', error); // Vérifiez les erreurs dans la console
-    });
-
     this.beerService.getBreweries().subscribe(data => {
       this.breweries = data;
       console.log('Breweries:', this.breweries); // Vérifiez les données dans la console
@@ -49,6 +44,14 @@ export class BeerComponent implements OnInit {
 
     // Demander explicitement les brasseries
     this.breweryService.fetchBreweries();
+  }
+
+  loadBeers(): void {
+    this.beerService.getBeers(this.currentPage, this.limit).subscribe(response => {
+      this.beers = response.data;
+      this.filteredBeers = this.beers;
+      this.totalPages = response.pagination.total_pages;
+    });
   }
 
   onSearch(event: Event): void {
@@ -68,5 +71,17 @@ export class BeerComponent implements OnInit {
         console.error('Error adding beer:', error);
       });
     }
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadBeers();
+    }
+  }
+
+  changeLimit(limit: number): void {
+    this.limit = limit;
+    this.loadBeers();
   }
 }
