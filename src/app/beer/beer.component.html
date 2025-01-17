@@ -1,10 +1,34 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <mat-form-field class="search-bar">
+  <mat-form-field class="search-bar" appearance="outline">
     <mat-label>Rechercher une bière</mat-label>
     <input matInput (input)="onSearch($event)" placeholder="Tapez pour rechercher">
   </mat-form-field>
+
+  <form [formGroup]="beerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nom de la bière</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Prix</mat-label>
+      <input matInput formControlName="price" type="number">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Brasserie</mat-label>
+      <mat-select formControlName="brewery_id">
+        <mat-option *ngFor="let brewery of breweries" [value]="brewery.id">
+          {{ brewery.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Ajouter</button>
+  </form>
 
   <div class="beer-grid">
     <div *ngFor="let beer of filteredBeers" class="beer-card">
@@ -14,6 +38,8 @@
         </mat-card-header>
         <mat-card-content>
           <p>{{ beer.description }}</p>
+          <p>Prix: {{ beer.price }} €</p>
+          <p>Brasserie: {{ beer.breweryid }}</p>
         </mat-card-content>
       </mat-card>
     </div>
