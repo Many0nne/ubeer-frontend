@@ -42,6 +42,8 @@ export class BeerComponent implements OnInit {
       console.error('Error fetching breweries:', error); // Vérifiez les erreurs dans la console
     });
 
+    this.loadBeers();
+
     // Demander explicitement les brasseries
     this.breweryService.fetchBreweries();
   }
