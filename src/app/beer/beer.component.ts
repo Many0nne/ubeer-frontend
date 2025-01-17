@@ -40,7 +40,7 @@ export class BeerComponent implements OnInit {
       console.error('Error fetching beers:', error); // Vérifiez les erreurs dans la console
     });
 
-    this.beerService.getBreweries().subscribe(data => {
+    this.breweryService.getBreweries().subscribe(data => {
       this.breweries = data;
       console.log('Breweries:', this.breweries); // Vérifiez les données dans la console
     }, error => {
