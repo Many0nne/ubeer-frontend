@@ -11,8 +11,8 @@ export class BeerService {
 
   constructor(private http: HttpClient) { }
   
-  getBeers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getBeers(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 
   addBeer(beer: any): Observable<any[]> {
