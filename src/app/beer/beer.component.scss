@@ -29,6 +29,13 @@ mat-card {
   width: 100%;
 }
 
+/* Conteneur pour encapsuler le formulaire */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 /* Conteneur du formulaire */
 .form-container {
   display: flex;
@@ -43,15 +50,28 @@ mat-card {
   gap: 20px;
   width: 100%;
   max-width: 600px; /* Limitez la largeur du formulaire */
+  background-color: #fff; /* Fond blanc */
+  padding: 20px; /* Ajoutez de l'espace à l'intérieur */
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoutez une ombre */
 }
 
 mat-form-field {
   width: 100%;
+  border: 1px solid black;
+}
+
+/* Groupe de boutons */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 button {
   align-self: flex-end; /* Alignez le bouton à droite */
 }
+
 
 /* Style pour les contrôles de pagination */
 .pagination-controls {

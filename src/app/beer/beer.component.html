@@ -36,27 +36,32 @@
     </mat-form-field>
   </div>
 
-  <form [formGroup]="beerForm" (ngSubmit)="onSubmit()" class="beer-form">
-    <mat-form-field>
-      <mat-label>Nom de la bière</mat-label>
-      <input matInput formControlName="name">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Prix</mat-label>
-      <input matInput formControlName="price" type="number">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Brasserie</mat-label>
-      <mat-select formControlName="brewery_id">
-        <mat-option *ngFor="let brewery of breweries" [value]="brewery.id">
-          {{ brewery.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Ajouter</button>
-  </form>
+  <!-- Div pour encapsuler le formulaire -->
+  <div class="form-wrapper">
+    <form [formGroup]="beerForm" (ngSubmit)="onSubmit()" class="beer-form">
+      <mat-form-field>
+        <mat-label>Nom de la bière</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Prix</mat-label>
+        <input matInput formControlName="price" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Brasserie</mat-label>
+        <mat-select formControlName="brewery_id">
+          <mat-option *ngFor="let brewery of breweries" [value]="brewery.id">
+            {{ brewery.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">Ajouter</button>
+      </div>
+    </form>
+  </div>
 </div>
