@@ -66,6 +66,7 @@ export class BeerComponent implements OnInit {
       this.beerService.addBeer(this.beerForm.value).subscribe(newBeer => {
         this.beers.push(newBeer);
         this.filteredBeers.push(newBeer);
+        this.loadBeers();
         this.beerForm.reset();
       }, error => {
         console.error('Error adding beer:', error);
@@ -82,6 +83,7 @@ export class BeerComponent implements OnInit {
 
   changeLimit(limit: number): void {
     this.limit = limit;
+    this.currentPage = 1;
     this.loadBeers();
   }
 }
