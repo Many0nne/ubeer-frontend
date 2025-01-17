@@ -10,7 +10,7 @@ export class BreweryService {
 
   constructor() {
     // Corrigez l'URL du serveur Socket.IO (doit correspondre au port de votre backend)
-    this.socket = io('http://localhost:3100'); // Port correct
+    this.socket = io('https://ubeer-backend.onrender.com/'); // Port correct
   }
 
   // Méthode pour écouter les brasseries via le socket
