@@ -13,8 +13,8 @@
 
 /* Style pour la grille de bières */
 .beer-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajustez la taille minimale des colonnes */
   gap: 20px;
   margin-bottom: 40px; /* Ajoutez un espace entre la grille et le formulaire */
 }
@@ -23,7 +23,6 @@
 .beer-card {
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 mat-card {
