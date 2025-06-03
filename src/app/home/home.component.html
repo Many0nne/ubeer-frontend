@@ -1,4 +1,24 @@
 <app-navbar></app-navbar>
+<app-verifiy-age-popup></app-verifiy-age-popup>
+
+<section class="w-full h-full m-0">
+    <div class="relative w-full h-full">
+        <img src="https://wiltonnantes.com/wp-content/uploads/2022/03/accueil-wilton.jpg" alt="Home Banner" class="absolute inset-0 w-full h-full object-cover sepia -z-10"/>
+        <div class="h-screen flex items-center justify-center flex-col relative z-10">
+            <div class="flex w-4/5">
+                <div class="w-1/2 p-8 flex flex-col justify-center items-start text-white bg-gray-100 rounded-l-lg gap-4 bg-opacity-90">
+                    <h1 class="text-4xl font-bold mb-4 text-black">Découvrez les meilleures bières artisanales</h1>
+                    <p class="mb-6 text-gray-800">Explorez notre site pour trouver les bières et les brasseries les plus authentiques et savoureuses.</p>
+                    <a [routerLink]="['/beers']" class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-700 cursor-pointer">Voir les bières</a>
+                </div>
+                <div class="w-1/2 rounded-r-lg">
+                    <img src="https://www.franciscosegarra.com/wp-content/uploads/2020/11/design-architecture-brasserie.jpg" alt="Brasserie" class="w-full h-full object-cover rounded-r-lg grayscale"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="w-full h-full m-0">
     <div class="relative w-full h-full">
         <img src="https://wiltonnantes.com/wp-content/uploads/2022/03/accueil-wilton.jpg" alt="Home Banner" class="absolute inset-0 w-full h-full object-cover sepia -z-10"/>
