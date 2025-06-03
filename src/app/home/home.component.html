@@ -1,6 +1,53 @@
 <app-navbar></app-navbar>
+<app-verifiy-age-popup></app-verifiy-age-popup>
+
 <section class="w-full h-full m-0">
-    <div class="bg-[url('https://fr.86beer.com/fr/fr/_jcr_content/root/content/container/container_649190826_.aimg.1024.82.jpeg/1696239299274.jpeg')] bg-cover bg-center h-screen flex items-center justify-center">
-        
+    <div class="relative w-full h-full">
+        <img src="https://wiltonnantes.com/wp-content/uploads/2022/03/accueil-wilton.jpg" alt="Home Banner" class="absolute inset-0 w-full h-full object-cover sepia -z-10"/>
+        <div class="h-screen flex items-center justify-center flex-col relative z-10">
+            <div class="flex w-4/5">
+                <div class="w-1/2 p-8 flex flex-col justify-center items-start text-white bg-gray-100 rounded-l-lg gap-4 bg-opacity-90">
+                    <h1 class="text-4xl font-bold mb-4 text-black">Découvrez les meilleures bières artisanales</h1>
+                    <p class="mb-6 text-gray-800">Explorez notre site pour trouver les bières et les brasseries les plus authentiques et savoureuses.</p>
+                    <a [routerLink]="['/beers']" class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-700 cursor-pointer">Voir les bières</a>
+                </div>
+                <div class="w-1/2 rounded-r-lg">
+                    <img src="https://www.franciscosegarra.com/wp-content/uploads/2020/11/design-architecture-brasserie.jpg" alt="Brasserie" class="w-full h-full object-cover rounded-r-lg grayscale"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="w-full h-full m-0">
+
+    <div class="flex flex-col items-center justify-center gap-8 p-8">
+        <h2 class="text-4xl font-bold text-gray-800">Nos brasseries</h2>
+    </div>
+
+    <!-- Liste des brasseries -->
+    <div class="w-4/5 mx-auto py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div 
+            *ngFor="let brewery of breweries | slice:0:6" 
+            class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+        >
+            <!-- Image de bannière -->
+            <div class="h-40 bg-cover bg-center transition-transform duration-300 hover:scale-105">
+            <img [src]="brewery.banner_picture_url" alt="{{ brewery.name }}" class="w-full h-full object-cover"/>
+            </div>
+
+            <!-- Contenu de la brasserie -->
+            <div class="p-4">
+            <h2 class="text-2xl font-bold mb-2">{{ brewery.name }}</h2>
+            <p class="text-gray-600 mb-4">{{ brewery.address }}</p>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Profil -->
+                <img class="w-12 h-12 rounded-full border border-gray-300" [src]="brewery.profile_picture_url" alt="{{ brewery.name }}"/>
+                <!-- Lien vers la page -->
+                <a [routerLink]="['/brewery', brewery.id]" class="text-blue-500 hover:underline font-medium">Voir les détails</a>
+            </div>
+            </div>
+        </div>
     </div>
 </section>
