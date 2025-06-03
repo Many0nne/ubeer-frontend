@@ -4,11 +4,12 @@ import { BreweryService } from '../services/brewery.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { VerifiyAgePopupComponent } from "../verifiy-age-popup/verifiy-age-popup.component";
 
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent, CommonModule, RouterLink],
+  imports: [NavbarComponent, CommonModule, RouterLink, VerifiyAgePopupComponent],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -19,6 +20,7 @@ export class HomeComponent {
   constructor(private breweryService: BreweryService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
+
     this.breweryService.getBreweries().subscribe((data) => {
       this.breweries = data.map((brewery) => ({
         ...brewery,
@@ -27,7 +29,7 @@ export class HomeComponent {
       }));
       console.log(this.breweries);
     });
-  
+
     this.breweryService.fetchBreweries();
   }
 }
