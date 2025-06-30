@@ -1,0 +1,13 @@
+<div class="age-verification">
+  <h1>Vérification d'âge</h1>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  <div *ngIf="verificationResult">
+    <h2>Résultat :</h2>
+    <p>Âge : {{ verificationResult.age }}</p>
+    <p *ngIf="verificationResult.isOldEnough">L'utilisateur est majeur.</p>
+    <p *ngIf="!verificationResult.isOldEnough">L'utilisateur est mineur.</p>
+  </div>
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

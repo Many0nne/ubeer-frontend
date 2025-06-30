@@ -1,0 +1,14 @@
+/* filepath: src/app/age-verification/age-verification.component.scss */
+.age-verification {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+input[type="file"] {
+  margin: 20px 0;
+}
+
+.error {
+  color: red;
+}
