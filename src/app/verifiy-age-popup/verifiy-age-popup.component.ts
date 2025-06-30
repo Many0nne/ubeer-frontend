@@ -31,7 +31,7 @@ export class VerifiyAgePopupComponent {
   ngOnInit(): void {
     // Vérifie le cookie à l'initialisation
     if (this.getCookie('ageConfirmed') === 'true') {
-      this.showAgePopup = false;
+      this.showAgePopup = true;
     }
   }
 
