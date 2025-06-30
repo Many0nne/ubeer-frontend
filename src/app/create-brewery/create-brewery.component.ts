@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { VerifiyAgePopupComponent } from "../verifiy-age-popup/verifiy-age-popup.component";
 
 @Component({
   selector: 'app-create-brewery',
   templateUrl: './create-brewery.component.html',
   styleUrls: ['./create-brewery.component.scss'],
-  imports: [CommonModule, NavbarComponent, ReactiveFormsModule],
+  imports: [CommonModule, NavbarComponent, ReactiveFormsModule, VerifiyAgePopupComponent],
   standalone: true,
 })
 export class CreateBreweryComponent {

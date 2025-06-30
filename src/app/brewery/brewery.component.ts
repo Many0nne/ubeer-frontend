@@ -4,11 +4,12 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { VerifiyAgePopupComponent } from "../verifiy-age-popup/verifiy-age-popup.component";
 
 @Component({
   selector: 'app-brewery',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, RouterLink],
+  imports: [NavbarComponent, CommonModule, RouterLink, VerifiyAgePopupComponent],
   templateUrl: './brewery.component.html',
   styleUrls: ['./brewery.component.scss']
 })
