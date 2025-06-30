@@ -5,6 +5,8 @@ import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 import { FaceVerificationService } from '../face-verification.service';
 import { environment } from '../../environments/environment.development'; // Assurez-vous que le chemin est correct
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +25,8 @@ export class NavbarComponent {
   constructor(
     @Inject(DOCUMENT) public document: Document, 
     public auth: AuthService,
-    private faceVerification: FaceVerificationService
+    private faceVerification: FaceVerificationService,
+    private http: HttpClient
   ) {}
 
   async handleImageUpload(event: any) {
@@ -61,6 +64,7 @@ export class NavbarComponent {
   }
 
   async verifyAge(imageUrl: string) {
+    console.log("On affiche bien le front")
     try {
       this.faceVerification.verifyAge(imageUrl).subscribe({
         next: (response) => {
@@ -78,6 +82,9 @@ export class NavbarComponent {
 
           console.log(`Âge estimé: ${estimatedAge} (fourchette: ${ageRange.Low}-${ageRange.High})`);
 
+          const user = firstValueFrom(this.auth.user$);
+          this.logAgeVerificationAttempt(user, imageUrl, estimatedAge, estimatedAge >= 18);
+
           if (estimatedAge >= 18) {
             this.auth.loginWithRedirect();
           } else {
@@ -86,12 +93,32 @@ export class NavbarComponent {
         },
         error: (err) => {
           console.error('Erreur de vérification:', err);
+          this.auth.user$.subscribe(user => {
+            this.logAgeVerificationAttempt(user, imageUrl, null, false);
+          }).unsubscribe();
           alert('Échec de la vérification d\'âge. Veuillez réessayer.');
         }
       });
     } catch (error) {
       console.error('Erreur:', error);
+      this.auth.user$.subscribe(user => {
+        this.logAgeVerificationAttempt(user, imageUrl, null, false);
+      }).unsubscribe();
       alert('Une erreur inattendue est survenue.');
     }
+  }
+
+  private logAgeVerificationAttempt(user: any, imageUrl: string, estimatedAge: number | null, success: boolean) {
+    const payload = {
+      user,
+      imageUrl,
+      estimatedAge,
+      success,
+      timestamp: new Date().toISOString()
+    };
+    this.http.post('http://localhost:3100/age-verification-attempt', payload).subscribe({
+      next: () => {},
+      error: (err) => { console.error('Erreur lors de l\'envoi de la tentative au backend', err); }
+    });
   }
 }

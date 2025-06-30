@@ -1,0 +1,14 @@
+{
+  "attempts": [
+    {
+      "user": {
+        "__zone_symbol__state": null,
+        "__zone_symbol__value": []
+      },
+      "imageUrl": "https://res.cloudinary.com/dazb9papx/image/upload/v1751277997/nwfcascck0xg3rbnshxz.jpg",
+      "estimatedAge": 1,
+      "success": false,
+      "timestamp": "2025-06-30T10:06:39.120Z"
+    }
+  ]
+}
